@@ -1,9 +1,6 @@
-﻿namespace HydroTodo.ViewModels;
+﻿using System.ComponentModel.DataAnnotations;
+using HydroTodo.Models;
 
-public enum Priority
-{
-    Low,
-    Normal,
-    High
-}
-public record NewTodo(string Content, Priority Priority = Priority.Normal);
+namespace HydroTodo.ViewModels;
+
+public record NewTodo([Required] string Content, Priority Priority = Priority.Normal);
