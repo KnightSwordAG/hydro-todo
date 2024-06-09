@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Hydro;
 using HydroTodo.Models;
+using HydroTodo.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace HydroTodo.Pages.Home.Components;
@@ -13,10 +14,15 @@ public class Todos(Database db) : HydroComponent
     }
 
     [Required]
-    public string NewItem { get; set; }
+    public NewTodo NewTodo { get; set; }
 
     public List<Todo> Items { get; set; }
 
+    public override void Mount()
+    {
+        NewTodo = NewTodo.Default;
+    }
+    
     public async Task Add()
     {
         if (!ModelState.IsValid)
@@ -24,11 +30,11 @@ public class Todos(Database db) : HydroComponent
             return;
         }
 
-        var todo = new Todo { Content = NewItem };
+        var todo = new Todo { Content = NewTodo.Content, Priority = NewTodo.Priority };
         db.Todos.Add(todo);
         await db.SaveChangesAsync();
 
-        NewItem = string.Empty;
+        NewTodo = NewTodo.Default;
     }
 
     public async Task Toggle(int id)

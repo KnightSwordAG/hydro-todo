@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 
-using HydroTodo.ViewModels;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -24,7 +22,7 @@ public enum Priority
 {
     Low = -1,
     Normal = 0,
-    High = 1
+    Urgent = 1
 }
 
 public class Todo

@@ -1,10 +1,27 @@
+@using Hydro.TagHelpers
+@using HydroTodo.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Todos
 
 <div class="container mx-auto my-4 bg-white rounded-md">
   <div class="shadow-lg rounded px-8 pt-6 pb-8 mb-4">
     <div class="mb-3">
       <form hydro-on:submit="@(() => Model.Add())">
-          <input asp-for="NewItem" hydro-bind placeholder="Add new task..." class="w-full mb-4 outline-none">
+          <div class="flex">
+                <div class="w-32 me-2">
+                    <select asp-for="NewTodo.Priority" hydro-bind class="w-full mb-4 px-2 py-1">
+                      @foreach (var priority in Enum.GetValues<Priority>())
+                      {
+                          <option value="@((int)priority)">@(priority)</option>
+                      }
+
+                  </select>
+              </div>
+              <div class="w-full">
+                <input asp-for="NewTodo.Content" hydro-bind placeholder="Add new task..." class="w-full mb-4 outline-none">
+              </div>
+          </div>
+          
       </form>
     </div>
     <ul class="list-none">
