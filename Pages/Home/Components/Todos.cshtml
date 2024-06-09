@@ -13,7 +13,7 @@
         <li class="flex items-center mb-2">
           <input type="checkbox" class="mr-2" id="@todo.Id" hydro-on:click="@(() => Model.Toggle(todo.Id))" checked="@(todo.Done ? "checked" : null)" />
           <label class="@(todo.Done ? "line-through" : "")" for="@todo.Id">
-              <span class="rounded bg-sky-700 py-1 px-4 text-white font-bold sm">@todo.Priority</span>
+              <span class="rounded bg-sky-700 py-1 px-2 text-white font-bold text-xs">@todo.Priority</span>
               @todo.Content
               
           </label>
